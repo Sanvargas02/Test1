@@ -34,6 +34,7 @@ public class Empleado extends HttpServlet {
         
 		EmpleadoDAO empDao = new EmpleadoDAO();
 		
+		//Validación al pulsar el botón crear en la intefáz, lo cual inserta un valor a la tabla
 		if(request.getParameter("crear")!=null) {
 			long cedula_empleado;
 			String nombre_empleado, email_empleado, empleado, contrasena;
@@ -51,6 +52,25 @@ public class Empleado extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "El empleado NO se registro");
 				response.sendRedirect("Empleados.jsp?men=El empleado NO se registro");
 			}
+		}
+		
+		//Validación al pulsar el botón consultar, nos trae información de la base de datos
+		if(request.getParameter("consultar")!=null) {
+			
+			long cedula_empleado;
+			String nombre_empleado, email_empleado, empleado, contrasena;
+			
+			cedula_empleado = Long.parseLong(request.getParameter("cedula_empleado"));
+			EmpleadoDTO emp = empDao.Buscar_Empleado(cedula_empleado);
+			cedula_empleado = emp.getCedula_empleado();
+			nombre_empleado = emp.getNombre_empleado();
+			email_empleado = emp.getEmail_empleado();
+			empleado = emp.getEmpleado();
+			contrasena = emp.getContrasena();
+			response.sendRedirect("Empleados.jsp?cedula_empleado="+cedula_empleado+"&&nombre_empleado="
+			+nombre_empleado+"&&email_empleado="+email_empleado+"&&empleado="+empleado+"&&contrasena="
+					+contrasena);
+			
 		}
 		
 	}
