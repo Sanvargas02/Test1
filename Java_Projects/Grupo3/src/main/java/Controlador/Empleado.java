@@ -60,7 +60,7 @@ public class Empleado extends HttpServlet {
 			long cedula_empleado;
 			String nombre_empleado, email_empleado, empleado, contrasena;
 			
-			cedula_empleado = Long.parseLong(request.getParameter("cedula_empleado"));
+			cedula_empleado = Long.parseLong(request.getParameter("cedula"));
 			EmpleadoDTO emp = empDao.Buscar_Empleado(cedula_empleado);
 			cedula_empleado = emp.getCedula_empleado();
 			nombre_empleado = emp.getNombre_empleado();

@@ -9,31 +9,43 @@
 <body>
 <%!String mensaje=""; 
 long cedula_empleado=0;
-String nombre_empleado="", email_empleado="", empleado="", contrasena="";
+String nombre_empleado="", email_empleado="", empleado="", contrasena="", estado="";
 %>
 <h1>Modulo Empleados</h1>
 <hr>
 <%
+//Trae los datos de la consulta y hace una validación
 if(request.getParameter("cedula_empleado")!=null){
 cedula_empleado = Long.parseLong(request.getParameter("cedula_empleado"));
 nombre_empleado = request.getParameter("nombre_empleado");
 email_empleado = request.getParameter("email_empleado");
 empleado = request.getParameter("empleado");
 contrasena = request.getParameter("contrasena");
+estado = "disabled";
 }
 %>
 <form action="Empleado" method="post">
-<div><label>Cedula: </label><input type="number" name="cedula_empleado" value="<%=cedula_empleado%>"></div>
-<div><label>Nombre Completo: </label><input type="text" name="nombre_empleado" value="<%=nombre_empleado%>"></div>
-<div><label>Correo Electronico: </label><input type="text" name="email_empleado" value="<%=email_empleado%>"></div>
-<div><label>Usuario: </label><input type="text" name="empleado" value="<%=empleado%>"></div>
-<div><label>Contrasena: </label><input type="password" name="contrasena" value="<%=contrasena%>"></div>
+<fieldset>
+<legend>Datos del Empleado</legend>
+<div><label>Cedula: </label><input type="number" name="cedula_empleado" value="<%=cedula_empleado%>" required <%=estado %>></div>
+<div><label>Nombre Completo: </label><input type="text" name="nombre_empleado" value="<%=nombre_empleado%>" required></div>
+<div><label>Correo Electronico: </label><input type="text" name="email_empleado" value="<%=email_empleado%>" required></div>
+<div><label>Usuario: </label><input type="text" name="empleado" value="<%=empleado%>" required></div>
+<div><label>Contrasena: </label><input type="password" name="contrasena" value="<%=contrasena%>" required></div>
 <div>
 <input type="submit" name="crear" value="Crear">
-<input type="submit" name="consultar" value="Consultar">
 <input type="submit" name="actualizar" value="Actualizar">
 <input type="submit" name="borrar" value="Borrar">
 </div>
+</fieldset>
+</form>
+
+<form action="Empleado" method="post">
+<fieldset>
+<legend>Consultar</legend>
+<div><label>Cedula: </label><input type="number" name="cedula" required></div>
+<input type="submit" name="consultar" value="Consultar">
+</fieldset>
 </form>
 <% 
 if(request.getParameter("men")!=null){
