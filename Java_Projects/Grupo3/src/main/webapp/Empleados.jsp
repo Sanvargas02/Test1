@@ -24,10 +24,23 @@ contrasena = request.getParameter("contrasena");
 estado = "disabled";
 }
 %>
+<%
+//Sirve como una validación de la actualización y del botón crear
+if(request.getParameter("men")!=null){
+cedula_empleado = 0;
+nombre_empleado = "";
+email_empleado = "";
+empleado = "";
+contrasena = "";
+estado = "";
+mensaje= request.getParameter("men");
+}
+%>
 <form action="Empleado" method="post">
 <fieldset>
 <legend>Datos del Empleado</legend>
 <div><label>Cedula: </label><input type="number" name="cedula_empleado" value="<%=cedula_empleado%>" required <%=estado %>></div>
+<input type="hidden" name="ced_empleado" value="<%=cedula_empleado%>">
 <div><label>Nombre Completo: </label><input type="text" name="nombre_empleado" value="<%=nombre_empleado%>" required></div>
 <div><label>Correo Electronico: </label><input type="text" name="email_empleado" value="<%=email_empleado%>" required></div>
 <div><label>Usuario: </label><input type="text" name="empleado" value="<%=empleado%>" required></div>
@@ -47,11 +60,7 @@ estado = "disabled";
 <input type="submit" name="consultar" value="Consultar">
 </fieldset>
 </form>
-<% 
-if(request.getParameter("men")!=null){
-mensaje= request.getParameter("men");
-}
-%>
+
 <h2><%=mensaje %></h2>
 </body>
 </html>

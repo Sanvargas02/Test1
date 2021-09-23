@@ -53,5 +53,23 @@ public class EmpleadoDAO {
 		
 	}
 	
+	//Método para Actualizar valores de la tabla
+	public boolean Actualizar_Empleado(EmpleadoDTO empl) {
+		boolean resul = false;
+		try {
+			String sql = "update empleados set email_empleado=?, nombre_empleado=?, contrasena=?, empleado=? where cedula_empleado=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, empl.getEmail_empleado());
+			ps.setString(2, empl.getNombre_empleado());
+			ps.setString(3, empl.getContrasena());
+			ps.setString(4, empl.getEmpleado());
+			ps.setLong(5, empl.getCedula_empleado());
+			resul = ps.executeUpdate()>0;
+		}catch(SQLException ex) {
+			JOptionPane.showMessageDialog(null, "error al actualizar: " + ex);
+		}
+		return resul;
+	}
+	
 	
 }

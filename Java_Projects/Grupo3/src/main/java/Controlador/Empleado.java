@@ -73,6 +73,27 @@ public class Empleado extends HttpServlet {
 			
 		}
 		
+		//Validación al pulsar el botón Actualizar
+		if(request.getParameter("actualizar")!=null) {
+			long cedula_empleado;
+			String nombre_empleado, email_empleado, empleado, contrasena;
+			
+			cedula_empleado = Long.parseLong(request.getParameter("ced_empleado"));
+			nombre_empleado = request.getParameter("nombre_empleado");
+			email_empleado = request.getParameter("email_empleado");
+			empleado = request.getParameter("empleado");
+			contrasena = request.getParameter("contrasena");
+			EmpleadoDTO empDTO = new EmpleadoDTO(cedula_empleado, email_empleado, nombre_empleado, contrasena, empleado);
+			if(empDao.Actualizar_Empleado(empDTO)) {
+				JOptionPane.showMessageDialog(null, "Empleado actualizado exitosamente");
+				response.sendRedirect("Empleados.jsp?men=Empleado actualizado exitosamente");
+			}else {
+				JOptionPane.showMessageDialog(null, "El empleado NO se actualizo");
+				response.sendRedirect("Empleados.jsp?men=El empleado NO se actualizo");
+			}
+		}
+		
+		
 	}
 
 }
