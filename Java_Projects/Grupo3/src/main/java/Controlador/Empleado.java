@@ -62,6 +62,7 @@ public class Empleado extends HttpServlet {
 			
 			cedula_empleado = Long.parseLong(request.getParameter("cedula"));
 			EmpleadoDTO emp = empDao.Buscar_Empleado(cedula_empleado);
+			if(emp!=null) {
 			cedula_empleado = emp.getCedula_empleado();
 			nombre_empleado = emp.getNombre_empleado();
 			email_empleado = emp.getEmail_empleado();
@@ -70,6 +71,9 @@ public class Empleado extends HttpServlet {
 			response.sendRedirect("Empleados.jsp?cedula_empleado="+cedula_empleado+"&&nombre_empleado="
 			+nombre_empleado+"&&email_empleado="+email_empleado+"&&empleado="+empleado+"&&contrasena="
 					+contrasena);
+			}else {
+				response.sendRedirect("Empleados.jsp?men= El empleado no Existe");
+			}
 			
 		}
 		
@@ -92,6 +96,23 @@ public class Empleado extends HttpServlet {
 				response.sendRedirect("Empleados.jsp?men=El empleado NO se actualizo");
 			}
 		}
+		
+		//Validación al pulsar el botón borrar
+				if(request.getParameter("borrar")!=null) {
+					long cedula_empleado;
+					
+					cedula_empleado = Long.parseLong(request.getParameter("ced_empleado"));
+					int op = JOptionPane.showConfirmDialog(null, "Desea eliminar el Empleado ced_empleado: " + cedula_empleado);
+					if(op==0) {
+					if(empDao.Eliminar_Empleado(cedula_empleado)) {
+						response.sendRedirect("Empleados.jsp?men=Empleado eliminado exitosamente");
+					}else {
+						response.sendRedirect("Empleados.jsp?men=El empleado NO se elimino");
+					}
+					}else {
+						response.sendRedirect("Empleados.jsp");
+					}
+				}
 		
 		
 	}

@@ -34,6 +34,7 @@ empleado = "";
 contrasena = "";
 estado = "";
 mensaje= request.getParameter("men");
+out.print("<script>alert('"+mensaje+"');</script>");//Mensaje con alert js
 }
 %>
 <form action="Empleado" method="post">
@@ -61,6 +62,5 @@ mensaje= request.getParameter("men");
 </fieldset>
 </form>
 
-<h2><%=mensaje %></h2>
 </body>
 </html>

@@ -71,5 +71,19 @@ public class EmpleadoDAO {
 		return resul;
 	}
 	
+	//Método para Eliminar valores de la tabla
+		public boolean Eliminar_Empleado(long cedula_empleado) {
+			boolean resul = false;
+			try {
+				String sql = "delete from empleados where cedula_empleado=?";
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, cedula_empleado);
+				resul = ps.executeUpdate()>0;
+			}catch(SQLException ex) {
+				JOptionPane.showMessageDialog(null, "error al Eliminar: " + ex);
+			}
+			return resul;
+		}
+	
 	
 }
