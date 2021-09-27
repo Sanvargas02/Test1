@@ -9,4 +9,6 @@
     <fullyQualifiedTypeName name="Modelo.EmpleadoDTO"/>
     <fullyQualifiedTypeName name="Modelo.EmpleadoDAO"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="Modelo.ProveedorDAO"/>
+    <fullyQualifiedTypeName name="Modelo.ProveedorDTO"/>
 </qualifiedTypeNameHistroy>
